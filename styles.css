@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,500;0,600;0,700;0,800;1,400&family=Poppins:wght@400;700;800&display=swap');
+
+*{
+    font-family: 'Open Sans', sans-serif;
+    color: darkgrey;
+
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+    background: #212830;
+
+}
+
+.header{
+    background: rgba(155, 154, 154, 0.3);
+    color: darkgrey;
+    font-size: 3rem;
+    font-weight: 800;
+
+    width: 100vw;
+    height: 10vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border:0.5rem solid #3b3b3b;
+    border-radius: 5px 5px;
+
+}
+
+.img{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 2fr 0.5fr 3fr 0.5fr 2fr ;
+
+}
+
+.grid-item , .sub-grid-item-1,.sub-grid-item-2,.sub-grid-item-3{
+    background-color: lightgray;
+    border: 1px solid black ;
+    color: black;
+    padding: 10px;
+    text-align: center;
+}
+
+.sub-grid-container{
+    display: grid;
+    grid-template-areas:
+        'main main'
+        'sub1 sub2';
+}
+
+.sub-grid-item-2{grid-area: sub1}
+.sub-grid-item-3{grid-area: sub2}
+
+.sub-grid-item-1{grid-area: main}
+
+.calculation-items{
+    display: grid;
+    grid-template-rows: repeat(7,1fr);
+    grid-template-columns: repeat(6,1fr);
+}
+
+.calc-items{
+    background-color: lightgray;
+    border: 1px solid black ;
+    color: black;
+    padding: 10px;
+    text-align: center;
+}
+
+
+

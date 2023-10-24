@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hydraulic dam design</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="inputs.css">
+</head>
+<body>
+<div class="header">HYDRAULIC DAM DESIGN</div>
+
+<div class="dimension">
+    Enter dimensions.
+</div>
+
+<form class="inputs" action="">
+    <input type="number" id="top_width" min="1" name="top width" required>
+    <input type="number" id="bottom_width" name="bottom width" required>
+    <input type="number" id="reservoir_width" name="reservoir width" required>
+    <input type="number" id="bottom_small_width" min="1" name="top width" required>
+    <input type="number" id="upper_side_width" name="bottom width" required>
+    <input type="number" id="lower_side_width" name="reservoir width" required>
+    <input type="number" id="tail_water_width" name="bottom width" required>
+    <input type="number" id="slope" name="main slope" required>
+
+
+</form>
+
+<div class="img">
+    <img src="./sample.png" alt="full reservoir case">
+</div>
+
+
+<div class="grid-container">
+    <div class="grid-item">Name of force</div>
+    <div class="grid-item">Designation</div>
+    <div class="grid-item sub-grid-container">
+        <div class="sub-grid-item-1">Magnitude(kn)</div>
+        <div class="sub-grid-item-2">vertical forces</div>
+        <div class="sub-grid-item-3">horizontal forces</div>
+
+    </div>
+
+    <div class="grid-item">lever arm</div>
+    <div class="grid-item">Moment abt toe</div>
+</div>
+
+<div class="calculation-items">
+    <div class="calc-items">1</div>
+    <div class="calc-items">w1
+    w2
+    w3</div>
+    <div class="calc-items">3</div>
+    <div class="calc-items">4</div>
+    <div class="calc-items">5</div>
+    <div class="calc-items">6</div>
+    <div class="calc-items">Weight of Dam</div>
+    <div class="calc-items">8</div>
+    <div class="calc-items">9</div>
+    <div class="calc-items">10</div>
+    <div class="calc-items">11</div>
+    <div class="calc-items">12</div>
+    <div class="calc-items">Weight of supported on u/s Slope water on U/s slope</div>
+    <div class="calc-items">14</div>
+    <div class="calc-items">15</div>
+    <div class="calc-items">16</div>
+    <div class="calc-items">17</div>
+    <div class="calc-items">18</div>
+    <div class="calc-items">Uplift forces</div>
+    <div class="calc-items">20</div>
+    <div class="calc-items">21</div>
+    <div class="calc-items">22</div>
+    <div class="calc-items">23</div>
+    <div class="calc-items">24</div>
+    <div class="calc-items">Upward vertical earthquake forces 0.05 W </div>
+    <div class="calc-items">26</div>
+    <div class="calc-items">27</div>
+    <div class="calc-items">28</div>
+    <div class="calc-items">29</div>
+    <div class="calc-items">30</div>
+    <div class="calc-items">Horizontal hydrostatic pressure</div>
+    <div class="calc-items">32</div>
+    <div class="calc-items">33</div>
+    <div class="calc-items">34</div>
+    <div class="calc-items">35</div>
+    <div class="calc-items">36</div>
+    <div class="calc-items">Horizontal inertia forces due to earthquake</div>
+    <div class="calc-items">38</div>
+    <div class="calc-items">39</div>
+    <div class="calc-items">40</div>
+    <div class="calc-items">41</div>
+    <div class="calc-items">42</div>
+</div>
+
+</body>
+</html>
