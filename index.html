@@ -21,7 +21,7 @@
     <input type="number" id="upper_side_width" name="bottom width" required>
     <input type="number" id="lower_side_width" name="reservoir width" required>
     <input type="number" id="tail_water_width" name="bottom width" required>
-    <input type="number" id="slope" name="main slope" required>
+    <input type="number" id="slope" name="main slope" step="0.01"  required>
 
 
 </form>
@@ -63,7 +63,7 @@
         <p>W3</p>
     </div>
     <div class="calc-items" id="wt-items"></div>
-    <div class="calc-items"></div>
+    <div class="calc-items">-</div>
     <div class="calc-items" id="wt-lever-arm-items"></div>
     <div class="calc-items" id="wt-moment-items"></div>
     <div class="calc-items">Weight of supported on u/s Slope water on U/s slope</div>
@@ -71,10 +71,10 @@
         <p>-</p>
         <p>-</p>
         <p>-</p></div>
-    <div class="calc-items">15</div>
-    <div class="calc-items">16</div>
-    <div class="calc-items">17</div>
-    <div class="calc-items">18</div>
+    <div class="calc-items" id="water-wt">15</div>
+    <div class="calc-items">-</div>
+    <div class="calc-items" id="water-wt-lever-arm"></div>
+    <div class="calc-items" id="water-wt-moment"></div>
     <div class="calc-items">Uplift forces</div>
     <div class="calc-items">
         <p>U1</p>
