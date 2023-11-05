@@ -131,3 +131,6 @@ li::before {
     content: '= ';
 }
 
+#just-for-gap{
+    row-gap: 1rem;
+}

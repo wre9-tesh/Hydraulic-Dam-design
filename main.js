@@ -1,4 +1,4 @@
-/* parameters for calculations*/
+/* parameters for calculations for table*/
 const top_width=parseFloat(document.getElementById('top_width').value);
 const reservoir_width=parseFloat(document.getElementById('reservoir_width').value);
 const upper_side_width= parseFloat(document.getElementById('upper_side_width').value);
@@ -84,6 +84,8 @@ const lever_listContainer = document.getElementById("wt-lever-arm-items");
 
 const wt_moment = multiplyArrays(wt_val,wt_lever_val);
 
+const wtMoment = wt_moment.map(item => parseFloat(item));
+
 const moment_listContainer = document.getElementById("wt-moment-items");
 
 // for water wt
@@ -122,11 +124,86 @@ wt_val.forEach(item =>{
 
 })
 
-const earthQuakeVertical = document.getElementById('earthquake-vertical-force');
+upwardVerticalEq_val *= -1 ;  //to give -ve value
+
+const earthQuakeVertical_listContainer = document.getElementById('earthquake-vertical-force');
+
+// for upward vertical earthquake moment
+
+let upwardMoment_val = 0;
+
+wtMoment.forEach(item =>{
+    upwardMoment_val+=item;
+
+})
+
+upwardMoment_val *= -0.05;
+
+const eqVerticalMoment_listContainer = document.getElementById('eq-vertical-moment');
+
+// horizontalHydroStatic force
+const horizontalHydroStatic_heavy = (l,u)=>{
+    return  (l+u)*10*(l+u)*0.5;
+}
+
+const horizontalHydroStatic_light = (t)=>{
+    return t*t*10*0.5;
+}
+
+const horizontalHydro_val = [-horizontalHydroStatic_heavy(lower_side_width,upper_side_width),horizontalHydroStatic_light(tail_water_depth)];
+
+const horizontalHydro_listContainer = document.getElementById('hydro-static-force');
+
+// horizontal Hydrostatic lever arm and moment
+
+const horizontalHydrostaticLeverArm= [(lower_side_width+upper_side_width)/3,tail_water_depth/3 ];
+
+const hydroStaticMoment = multiplyArrays(horizontalHydro_val,horizontalHydrostaticLeverArm);
+
+const hydroStaticMoment_val = hydroStaticMoment.map(item => parseFloat(item));
+
+const horizontalHydroLeverArm_listContainer = document.getElementById('hydro-static-lever-arm');
+
+const horizontalHydroMoment_listContainer = document.getElementById('hydro-static-moment');
+
+// calculation of Pe and Me by Zangers formula
+
+let me_val = 0;
+const pe_val = (bottom_small,upper_ht,lower_ht)=>{
+    const wall_ht = upper_ht+lower_ht;
+    const cm =  0.735 * (Math.atan(wall_ht/bottom_small)/90)*(180/Math.PI);
+    const ans = 0.726* cm *Math.pow(wall_ht,2);
+    me_val = - ans * 0.412 * wall_ht;
+    return - ans;
+}
 
 
+const peVal_listContainer = document.getElementById('pe_val');
+
+const meVal_listContainer = document.getElementById('me_val');
+
+// horizontal eq forces
+
+horizontalEqForce_listContainer = document.getElementById('horizontal-eq-force');
+
+// horizontal lever arm
+
+const horizontalEqLeverArm_val = [(lower_side_width/3),(lower_side_width+upper_side_width+reservoir_width)/2,((bottom_width-top_width)*slope)/3];
+
+horizontalEqLeverArm_listContainer = document.getElementById('horizontal-eq-lever-arm');
+
+//  horizontal moment
+
+horizontalEqMoment_listContainer = document.getElementById('horizontal-eq-moment');
+
+const horizontalEqForces_val = wt_val.map(item => -0.1 * item);
+
+const horizontalEqMoment = multiplyArrays(horizontalEqLeverArm_val,horizontalEqForces_val);
+
+const horizontalEqMoment_val = horizontalEqMoment.map(item => parseFloat(item));
 
 
+// calc button
 const calcButton = document.getElementById('button-64');
 
 calcButton.addEventListener('click',()=>{
@@ -139,6 +216,16 @@ calcButton.addEventListener('click',()=>{
     uplift_listConatiner.textContent = '';
     upLiftLever_listContainer.textContent ='';
     upliftMoment_listContainer.textContent= '';
+    earthQuakeVertical_listContainer.textContent = '';
+    eqVerticalMoment_listContainer.textContent = '';
+    horizontalHydroLeverArm_listContainer.textContent ='';
+    horizontalHydro_listContainer.textContent = '';
+    horizontalHydroMoment_listContainer.textContent= '';
+    peVal_listContainer.textContent= '';
+    meVal_listContainer.textContent= '';
+    horizontalEqForce_listContainer.textContent= '';
+    horizontalEqLeverArm_listContainer.textContent= '';
+    horizontalEqMoment_listContainer.textContent= '';
 
     waterWt.textContent = '';
 
@@ -196,11 +283,73 @@ calcButton.addEventListener('click',()=>{
         upliftMomentList.textContent = item;
         upliftMoment_listContainer.appendChild(upliftMomentList);
     });
-// eartquake force
+// earthquake force
+       const equakeList = document.createElement("li");
+       equakeList.textContent = upwardVerticalEq_val.toFixed(2);
+       earthQuakeVertical_listContainer.appendChild(equakeList);
+
+// earthquake moment
+        const equakeMomentList = document.createElement('li')
+        equakeMomentList.textContent = upwardMoment_val.toFixed(2);
+        eqVerticalMoment_listContainer.appendChild(equakeMomentList);
+// Hydrostatic force
+    horizontalHydro_val.forEach(item => {
+        const horizontalHydroList = document.createElement("li");
+        horizontalHydroList.textContent = item;
+        horizontalHydro_listContainer.appendChild(horizontalHydroList);
+    });
+// hydrostatic lever arm
+    horizontalHydrostaticLeverArm.forEach(item => {
+        const horizontalHydroLeverArmList = document.createElement("li");
+        horizontalHydroLeverArmList.textContent = item.toFixed(2);
+        horizontalHydroLeverArm_listContainer.appendChild(horizontalHydroLeverArmList);
+    });
+// hydrostatic moment
+    hydroStaticMoment_val.forEach(item => {
+        const horizontalHydroMomentList = document.createElement("li");
+        horizontalHydroMomentList.textContent = item;
+        horizontalHydroMoment_listContainer.appendChild(horizontalHydroMomentList);
+    });
+
+// Pe calc
+    const peList = document.createElement('li')
+    peList.textContent = pe_val(bottom_small_width,upper_side_width,lower_side_width).toFixed(2);
+    peVal_listContainer.appendChild(peList);
+
+// Me calc
+    const meList = document.createElement('li')
+    meList.textContent = me_val.toFixed(2);
+    meVal_listContainer.appendChild(meList);
+
+// horizontal eq forces
+    wt_val.forEach(item => {
+        const horizontalEqForceList = document.createElement("li");
+        horizontalEqForceList.textContent = -0.1 * (item).toFixed(2);
+        horizontalEqForce_listContainer.appendChild(horizontalEqForceList);
+    });
+//  horizontal eq lever arm
+    horizontalEqLeverArm_val.forEach(item => {
+        const horizontalEqLeverArmList = document.createElement("li");
+        horizontalEqLeverArmList.textContent = (item).toFixed(2);
+        horizontalEqLeverArm_listContainer.appendChild(horizontalEqLeverArmList);
+    });
+
+//  horizontal eq moment
+    horizontalEqMoment_val.forEach(item => {
+        const horizontalEqMomentList = document.createElement("li");
+        horizontalEqMomentList.textContent = item;
+        horizontalEqMoment_listContainer.appendChild(horizontalEqMomentList);
+    });
 
 
 
 })
+
+
+
+// parameters for checking safety
+
+// const summationMoment =
 
 
 
