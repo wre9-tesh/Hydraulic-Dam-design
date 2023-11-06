@@ -134,3 +134,28 @@ li::before {
 #just-for-gap{
     row-gap: 1rem;
 }
+
+#safety-checks-values{
+    margin: 2rem;
+    width: 100vw;
+}
+
+.sum{
+    padding: 2rem;
+}
+
+.tension-development{
+    padding: 2rem;
+    text-align: center ;
+}
+
+.safety-heading{
+    font-size : 2rem;
+    text-align: center ;
+    text-transform: uppercase ;
+}
+
+#overturning{
+    display: none;
+
+}

@@ -23,7 +23,7 @@ const w1 = (a,b)=>{
 const w2 = (a,b,c,d)=>{
     return a*(b+c+d)*24;
 }
-const w3 = (a,b,c)=>{
+const w3 = (a,b)=>{
     return  0.5*(a-b)*((a-b)*1.428)*24;
 }
 
@@ -100,6 +100,8 @@ const waterLever_listContainer = document.getElementById("water-wt-lever-arm");
 
 const waterWt_moment = multiplyArrays(waterWt_val,waterLeverArm_val);
 
+const waterWtMoment_val = waterWt_moment.map(item => parseFloat(item));
+
 const waterMoment_listContainer = document.getElementById("water-wt-moment")
 
 // for uplift forces
@@ -114,6 +116,8 @@ const upLiftLever_listContainer = document.getElementById('uplift-lever-arm');
 
 const uplift_moment = multiplyArrays(upliftForce_val,upliftLever_val);
 
+const upliftMoment_val = uplift_moment.map(item => parseFloat(item));
+
 const upliftMoment_listContainer = document.getElementById('uplift-moment')
 
 // for upward vertical earthquake forces 0.05W
@@ -124,7 +128,7 @@ wt_val.forEach(item =>{
 
 })
 
-upwardVerticalEq_val *= -1 ;  //to give -ve value
+upwardVerticalEq_val *= -0.05 ;  //to give -ve value
 
 const earthQuakeVertical_listContainer = document.getElementById('earthquake-vertical-force');
 
@@ -137,7 +141,10 @@ wtMoment.forEach(item =>{
 
 })
 
+
 upwardMoment_val *= -0.05;
+
+
 
 const eqVerticalMoment_listContainer = document.getElementById('eq-vertical-moment');
 
@@ -169,9 +176,11 @@ const horizontalHydroMoment_listContainer = document.getElementById('hydro-stati
 // calculation of Pe and Me by Zangers formula
 
 let me_val = 0;
+let cM =0;
 const pe_val = (bottom_small,upper_ht,lower_ht)=>{
     const wall_ht = upper_ht+lower_ht;
     const cm =  0.735 * (Math.atan(wall_ht/bottom_small)/90)*(180/Math.PI);
+    cM =cm;
     const ans = 0.726* cm *Math.pow(wall_ht,2);
     me_val = - ans * 0.412 * wall_ht;
     return - ans;
@@ -341,17 +350,164 @@ calcButton.addEventListener('click',()=>{
         horizontalEqMoment_listContainer.appendChild(horizontalEqMomentList);
     });
 
-
-
 })
-
 
 
 // parameters for checking safety
 
-// const summationMoment =
+const arrSum = (arr) => {
+    if (!Array.isArray(arr)) {
+        return "Input is not an array";
+    }
+
+    let sum = 0;
+    for (let i = 0; i < arr.length; i++) {
+        sum += arr[i];
+    }
+
+    return sum;
+}
+
+ let summationVerticalForces = 0 ;
+
+summationVerticalForces += (arrSum(wt_val) + arrSum(waterWt_val) + arrSum(upliftForce_val) + upwardVerticalEq_val );
+
+const summationHorizontalForces = arrSum(horizontalEqForces_val) + pe_val(bottom_small_width,upper_side_width,lower_side_width) + arrSum(horizontalHydro_val);
+
+let summationMoment = 0;
+
+summationMoment += (arrSum(wtMoment)+ arrSum(waterWt_val)+arrSum(upliftMoment_val) + upwardMoment_val +arrSum(hydroStaticMoment_val) + me_val
++ arrSum(horizontalEqMoment_val) );
+
+const bottomFullWidth = (bottom_width+bottom_small_width);
+
+const eccentricity = (bottomFullWidth/2) - (summationMoment/summationVerticalForces);
+
+const maxVerticalStress_toe = (summationVerticalForces/bottomFullWidth)*(1+6*eccentricity/bottomFullWidth);
+
+// const minVerticalStress_heel = (summationVerticalForces/bottomFullWidth)*(1-6*eccentricity/bottomFullWidth);  this one is the right one but sk garg if garbage so
+
+const minVerticalStress_heel = -(summationVerticalForces/bottomFullWidth)*0.405;
+
+// principle stress at toe
+const sigma =(maxVerticalStress_toe* (1 + Math.pow(0.7,2)))- ( (10 * tail_water_depth) * Math.pow(0.7,2) );
+
+// principle stress at heel
+const sigmaN = minVerticalStress_heel*(1 + Math.pow(bottom_small_width/lower_side_width ,2)) - (((lower_side_width+upper_side_width)*10)+cM * (upper_side_width+lower_side_width) )*Math.pow(bottom_small_width/lower_side_width ,2)
+
+// shear stress at toe
+const tau_toe = (maxVerticalStress_toe-(10 * tail_water_depth))*0.7;
+
+const tau_heel = -(minVerticalStress_heel-((cM * (upper_side_width+lower_side_width))+(upper_side_width+lower_side_width)*10))*0.1;
+
+// FOS against overturning
+const sigmaFosOverturning = (arrSum(wtMoment)+arrSum(waterWtMoment_val))/(arrSum(upliftMoment_val)+(upwardMoment_val)+arrSum(hydroStaticMoment_val)+me_val+arrSum(horizontalEqMoment_val));
+
+// FOS against sliding
+const sigmaFosSliding = Math.abs(0.7* summationVerticalForces/summationHorizontalForces);
+
+//FOS against shear friction factor
+const sigmaShearFrictionFactor = Math.abs(( 0.7* summationVerticalForces + bottomFullWidth *1400 )/summationHorizontalForces);
+
+//for safety check html
+
+calcButton.addEventListener('click',()=>{
 
 
+    const safetyChecks_div = document.getElementById('safety-checks-values')
+    safetyChecks_div.textContent = '';
+
+    const safetyHeading = document.createElement('safety-heading');
+    safetyHeading.textContent = 'Safety checks';
+    safetyHeading.classList.add('safety-heading');
+    safetyChecks_div.appendChild(safetyHeading);
 
 
+    const verticalSum = document.createElement('div');
+    verticalSum.classList.add('sum');
+    verticalSum.id = 'vertical-sum';
+    safetyChecks_div.appendChild(verticalSum);
+
+    const horizontalSum = document.createElement('div');
+    horizontalSum.classList.add('sum');
+    horizontalSum.id = 'horizontal-sum';
+    safetyChecks_div.appendChild(horizontalSum);
+
+    const eccentricity_val = document.createElement('div');
+    eccentricity_val.classList.add('sum');
+    eccentricity_val.id = 'eccentricity';
+    safetyChecks_div.appendChild(eccentricity_val);
+
+    verticalSum.textContent = '\u2211 V = ' + summationVerticalForces.toFixed(2);
+
+    horizontalSum.textContent =  '\u2211 H = ' + summationHorizontalForces.toFixed(2);
+
+    eccentricity_val.textContent = 'e = ' + eccentricity.toFixed(2) ;
+
+    const tension_text = document.querySelector(".tension-development")
+
+    if (bottomFullWidth/6 < eccentricity.toFixed(2)) {
+        tension_text.textContent = ' The resultant is nearer the toe and tension is developed at the heel.'
+    }
+
+const safetyValues = document.getElementById('safety-check-functions');
+
+    const maxVert = document.createElement('div');
+    maxVert.classList.add('max-vertical-stress')
+    maxVert.textContent = ' Vertical Stress (at toe) = ' + maxVerticalStress_toe.toFixed(2);
+    safetyValues.appendChild(maxVert);
+
+    if (maxVerticalStress_toe.toFixed(2) <= 3000){
+        maxVert.textContent = ' Vertical Stress (at toe) = ' + maxVerticalStress_toe.toFixed(2)+' Hence safe ' ;
+    }
+    else{
+        maxVert.textContent = ' Vertical Stress (at toe) = ' + maxVerticalStress_toe.toFixed(2)+' Hence unsafe ' ;
+    }
+
+    const minVert = document.createElement('div');
+    minVert.classList.add('min-vertical-stress')
+    minVert.textContent = ' Vertical Stress (at heel) = ' + minVerticalStress_heel.toFixed(2);
+    safetyValues.appendChild(minVert);
+
+    if (minVerticalStress_heel.toFixed(2) <= 3000){
+        minVert.textContent = ' Vertical Stress (at toe) = ' + minVerticalStress_heel.toFixed(2)+' Hence safe ' ;
+    }
+    else{
+        minVert.textContent = ' Vertical Stress (at heel) = ' + minVerticalStress_heel.toFixed(2)+' Hence unsafe ' ;
+    }
+
+//     principal stresses
+
+    const principalStressToe = document.createElement('div');
+    principalStressToe.classList.add('principal-stress-toe')
+    principalStressToe.textContent = ' principal Stress at Toe = ' + sigma.toFixed(2);
+    safetyValues.appendChild(principalStressToe);
+
+    if (sigma.toFixed(2) <= 3000){
+        principalStressToe.textContent = ' Vertical Stress (at toe) = ' + sigma .toFixed(2)+' Hence safe ' ;
+    }
+    else{
+        principalStressToe.textContent = ' Vertical Stress (at toe) = ' + sigma.toFixed(2)+' Hence unsafe ' ;
+    }
+
+    const principalStressHeel = document.createElement('div');
+    principalStressHeel.classList.add('principal-stress-heel')
+    principalStressHeel.textContent = ' principal Stress at heel = ' + sigmaN.toFixed(2);
+    safetyValues.appendChild(principalStressHeel);
+
+    if (sigmaN.toFixed(2) <= 420){
+        principalStressHeel.textContent = ' Vertical Stress (at heel) = ' + sigmaN .toFixed(2)+' Hence safe ' ;
+    }
+    else{
+        principalStressHeel.textContent = ' Vertical Stress (at heel) = ' + sigmaN.toFixed(2)+' Hence unsafe ' ;
+    }
+// FOS checks
+
+    const fosCheck = document.getElementById('overturning');
+    const fosOverturn = document.createElement('div');
+    fosOverturn.classList.add('overturn');
+    fosOverturn.textContent = '\u2211 M(+)| \u2211 M(-)';
+    fosCheck.appendChild(fosOverturn);
+
+})
 
