@@ -1,12 +1,23 @@
 /* parameters for calculations for table*/
-const top_width=parseFloat(document.getElementById('top_width').value);
-const reservoir_width=parseFloat(document.getElementById('reservoir_width').value);
-const upper_side_width= parseFloat(document.getElementById('upper_side_width').value);
-const lower_side_width=parseFloat(document.getElementById('lower_side_width').value);
-const slope= parseFloat(document.getElementById('slope').value);
-const tail_water_depth= parseFloat(document.getElementById('tail_water_width').value);
-const bottom_small_width=parseFloat(document.getElementById('bottom_small_width').value);
-const bottom_width= parseFloat(document.getElementById('bottom_width').value);
+let top_width = 0 ;
+let reservoir_width= 0 ;
+let upper_side_width=  0 ;
+let lower_side_width= 0 ;
+let slope=  0 ;
+let tail_water_depth=  0 ;
+let bottom_small_width= 0 ;
+let bottom_width=  0 ;
+
+document.getElementById("myForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent the default form submission behavior
+     top_width=parseFloat(document.getElementById('top_width').value);
+     reservoir_width=parseFloat(document.getElementById('reservoir_width').value);
+     upper_side_width= parseFloat(document.getElementById('upper_side_width').value);
+     lower_side_width=parseFloat(document.getElementById('lower_side_width').value);
+     slope= parseFloat(document.getElementById('slope').value);
+     tail_water_depth= parseFloat(document.getElementById('tail_water_width').value);
+     bottom_small_width=parseFloat(document.getElementById('bottom_small_width').value);
+     bottom_width= parseFloat(document.getElementById('bottom_width').value);
 
 function multiplyArrays(arr1, arr2) {
     if (arr1.length !== arr2.length) {
@@ -211,12 +222,6 @@ const horizontalEqMoment = multiplyArrays(horizontalEqLeverArm_val,horizontalEqF
 
 const horizontalEqMoment_val = horizontalEqMoment.map(item => parseFloat(item));
 
-
-// calc button
-const calcButton = document.getElementById('button-64');
-
-calcButton.addEventListener('click',()=>{
-
     lever_listContainer.textContent = '';
     wt_listContainer.textContent = '' ;
     moment_listContainer.textContent = '';
@@ -348,9 +353,9 @@ calcButton.addEventListener('click',()=>{
         const horizontalEqMomentList = document.createElement("li");
         horizontalEqMomentList.textContent = item;
         horizontalEqMoment_listContainer.appendChild(horizontalEqMomentList);
-    });
-
 })
+//
+// })
 
 
 // parameters for checking safety
@@ -411,9 +416,6 @@ const sigmaShearFrictionFactor = Math.abs(( 0.7* summationVerticalForces + botto
 
 //for safety check html
 
-calcButton.addEventListener('click',()=>{
-
-
     const safetyChecks_div = document.getElementById('safety-checks-values')
     safetyChecks_div.textContent = '';
 
@@ -454,8 +456,6 @@ const safetyValues = document.getElementById('safety-check-functions');
 
     const maxVert = document.createElement('div');
     maxVert.classList.add('max-vertical-stress')
-    maxVert.textContent = ' Vertical Stress (at toe) = ' + maxVerticalStress_toe.toFixed(2);
-    safetyValues.appendChild(maxVert);
 
     if (maxVerticalStress_toe.toFixed(2) <= 3000){
         maxVert.textContent = ' Vertical Stress (at toe) = ' + maxVerticalStress_toe.toFixed(2)+' Hence safe ' ;
@@ -464,13 +464,16 @@ const safetyValues = document.getElementById('safety-check-functions');
         maxVert.textContent = ' Vertical Stress (at toe) = ' + maxVerticalStress_toe.toFixed(2)+' Hence unsafe ' ;
     }
 
+    safetyValues.appendChild(maxVert);
+
     const minVert = document.createElement('div');
     minVert.classList.add('min-vertical-stress')
-    minVert.textContent = ' Vertical Stress (at heel) = ' + minVerticalStress_heel.toFixed(2);
-    safetyValues.appendChild(minVert);
+        if (!safetyValues.contains(minVert)) {
+            safetyValues.appendChild(minVert);
+        }
 
     if (minVerticalStress_heel.toFixed(2) <= 3000){
-        minVert.textContent = ' Vertical Stress (at toe) = ' + minVerticalStress_heel.toFixed(2)+' Hence safe ' ;
+        minVert.textContent = ' Vertical Stress (at heel) = ' + minVerticalStress_heel.toFixed(2)+' Hence safe ' ;
     }
     else{
         minVert.textContent = ' Vertical Stress (at heel) = ' + minVerticalStress_heel.toFixed(2)+' Hence unsafe ' ;
@@ -480,34 +483,86 @@ const safetyValues = document.getElementById('safety-check-functions');
 
     const principalStressToe = document.createElement('div');
     principalStressToe.classList.add('principal-stress-toe')
-    principalStressToe.textContent = ' principal Stress at Toe = ' + sigma.toFixed(2);
     safetyValues.appendChild(principalStressToe);
 
     if (sigma.toFixed(2) <= 3000){
-        principalStressToe.textContent = ' Vertical Stress (at toe) = ' + sigma .toFixed(2)+' Hence safe ' ;
+        principalStressToe.textContent = ' principal Stress at Toe = ' + sigma .toFixed(2)+' Hence safe ' ;
     }
     else{
-        principalStressToe.textContent = ' Vertical Stress (at toe) = ' + sigma.toFixed(2)+' Hence unsafe ' ;
+        principalStressToe.textContent = ' principal Stress at Toe = ' + sigma.toFixed(2)+' Hence unsafe ' ;
     }
 
     const principalStressHeel = document.createElement('div');
     principalStressHeel.classList.add('principal-stress-heel')
-    principalStressHeel.textContent = ' principal Stress at heel = ' + sigmaN.toFixed(2);
     safetyValues.appendChild(principalStressHeel);
 
+
     if (sigmaN.toFixed(2) <= 420){
-        principalStressHeel.textContent = ' Vertical Stress (at heel) = ' + sigmaN .toFixed(2)+' Hence safe ' ;
+        principalStressHeel.textContent = ' principal Stress at heel = ' + sigmaN .toFixed(2)+' Hence safe ' ;
     }
     else{
-        principalStressHeel.textContent = ' Vertical Stress (at heel) = ' + sigmaN.toFixed(2)+' Hence unsafe ' ;
+        principalStressHeel.textContent = ' principal Stress at heel = ' + sigmaN.toFixed(2)+' Hence unsafe ' ;
     }
 // FOS checks
-
-    const fosCheck = document.getElementById('overturning');
+// for overturning
+    const fosOtCheck = document.getElementById('overturning');
     const fosOverturn = document.createElement('div');
     fosOverturn.classList.add('overturn');
-    fosOverturn.textContent = '\u2211 M(+)| \u2211 M(-)';
-    fosCheck.appendChild(fosOverturn);
+    const fosOverturnStatement = document.createElement('div');
+    fosOverturnStatement.classList.add('otStatement')
+    fosOverturn.textContent = ' \u2211 M(+) ÷ \u2211 M(-) = ' + sigmaFosOverturning.toFixed(2);
+    fosOtCheck.appendChild(fosOverturn);
+    fosOtCheck.style.display='block'
 
-})
+    if (sigmaFosOverturning.toFixed(2) <= 1.5){
+        fosOverturnStatement.textContent = ' Factor of safety against overturning = ' + sigmaFosOverturning.toFixed(2)+' < 1.5 , Hence Unsafe ' ;
+    }
+    else{
+        fosOverturnStatement.textContent = ' Factor of safety against overturning = ' + sigmaFosOverturning.toFixed(2)+' > 1.5 , Hence Safe ' ;
+    }
+    fosOtCheck.appendChild(fosOverturnStatement);
 
+//for sliding
+
+    const fosSlidingCheck = document.getElementById('sliding');
+    const fosSlide = document.createElement('div');
+    fosSlide.classList.add('slide');
+    const fosSlidingStatement = document.createElement('div');
+    fosSlidingStatement.classList.add('slideStatement')
+    fosSlide.textContent = '(\xB5 * \u2211V) ÷ \u2211H = ' + sigmaFosSliding.toFixed(2);
+    fosSlidingCheck.appendChild(fosSlide);
+    fosSlidingCheck.style.display='block'
+
+    if (sigmaFosSliding.toFixed(2) <= 1.5){
+        fosSlidingStatement.textContent = ' Factor of safety against sliding = ' + sigmaFosSliding.toFixed(2)+' < 1 , Hence Unsafe ' ;
+    }
+    else{
+        fosSlidingStatement.textContent = ' Factor of safety against sliding = ' + sigmaFosSliding.toFixed(2)+' > 1 , Hence Safe ' ;
+    }
+    fosSlidingCheck.appendChild(fosSlidingStatement);
+
+
+    //for shear friction factor
+    const fosSsf = document.getElementById('shear-friction-factor');
+    const fosSsf_val = document.createElement('div');
+    fosSsf_val.classList.add('slide');
+    const fosSsfStatement = document.createElement('div');
+    fosSsfStatement.classList.add('slideStatement')
+    fosSsf_val.textContent = '(\xB5 * \u2211V + B*q) ÷ \u2211H = ' + sigmaShearFrictionFactor.toFixed(2);
+    fosSsf.appendChild(fosSsf_val);
+    fosSsf.style.display='block'
+
+    if (sigmaFosSliding.toFixed(2) <= 1.5){
+        fosSsfStatement.textContent = 'As, Shear friction factor = ' + sigmaShearFrictionFactor.toFixed(2)+' < 3 , Hence Unsafe ' ;
+    }
+    else{
+        fosSsfStatement.textContent = 'As, Shear friction factor = ' + sigmaShearFrictionFactor.toFixed(2)+' > 3 , Hence Safe ' ;
+    }
+    fosSsf.appendChild(fosSsfStatement);
+
+
+
+
+    document.getElementById("submitButton").disabled = true;
+
+});

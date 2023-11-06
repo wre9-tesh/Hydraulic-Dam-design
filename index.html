@@ -13,15 +13,16 @@
     Enter dimensions.
 </div>
 
-<form class="inputs" action="">
-    <input type="number" id="top_width" min="1" name="top width" required>
-    <input type="number" id="bottom_width" name="bottom width" required>
-    <input type="number" id="reservoir_width" name="reservoir width" required>
-    <input type="number" id="bottom_small_width" min="1" name="top width" required>
-    <input type="number" id="upper_side_width" name="bottom width" required>
-    <input type="number" id="lower_side_width" name="reservoir width" required>
-    <input type="number" id="tail_water_width" name="bottom width" required>
-    <input type="number" id="slope" name="main slope" step="0.01"  required>
+<form class="inputs" id="myForm">
+    <input type="number" id="top_width" min="1" name="top_width" required>
+    <input type="number" id="bottom_width" name="bottom_width" required>
+    <input type="number" id="reservoir_width" name="reservoir_width" required>
+    <input type="number" id="bottom_small_width" min="1" name="bottom_small_width" required>
+    <input type="number" id="upper_side_width" name="bottom_width" required>
+    <input type="number" id="lower_side_width" name="reservoir_width" required>
+    <input type="number" id="tail_water_width" name="tail_water_width" required>
+    <input type="number" id="slope" name="slope" step="0.01"  required>
+    <input type="submit" id="submitButton" value="Submit">
 
 
 </form>
@@ -129,6 +130,9 @@
 <div id="safety-check-functions"></div>
 
 <div id="overturning">Factor of safety against overturning</div>
+<div id="sliding">Factor of safety against sliding</div>
+<div id="shear-friction-factor">shear friction factor</div>
+
 
 
 <script src="main.js"></script>

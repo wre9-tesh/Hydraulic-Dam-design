@@ -92,6 +92,7 @@ p,sub{
 }
 
 #button-64 {
+    display: none;
     align-items: center;
     background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
     border: 0;
@@ -99,7 +100,6 @@ p,sub{
     box-shadow: rgba(151, 65, 252, 0.2) 0 20px 30px -5px;
     box-sizing: border-box;
     color: #FFFFFF;
-    display: flex;
     font-family: Phantomsans, sans-serif;
     font-size: 20px;
     justify-content: center;
@@ -155,7 +155,8 @@ li::before {
     text-transform: uppercase ;
 }
 
-#overturning{
+#overturning, #sliding, #shear-friction-factor{
     display: none;
 
 }
+
