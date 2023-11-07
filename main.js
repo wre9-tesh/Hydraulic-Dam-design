@@ -282,7 +282,7 @@ const horizontalEqMoment_val = horizontalEqMoment.map(item => parseFloat(item));
 // uplift forces
     upliftForce_val.forEach(item => {
         const upliftList = document.createElement("li");
-        upliftList.textContent = item;
+        upliftList.textContent = item.toFixed(2);
         uplift_listConatiner.appendChild(upliftList);
     });
 //     uplift lever arm
@@ -309,7 +309,7 @@ const horizontalEqMoment_val = horizontalEqMoment.map(item => parseFloat(item));
 // Hydrostatic force
     horizontalHydro_val.forEach(item => {
         const horizontalHydroList = document.createElement("li");
-        horizontalHydroList.textContent = item;
+        horizontalHydroList.textContent = item.toFixed(2);
         horizontalHydro_listContainer.appendChild(horizontalHydroList);
     });
 // hydrostatic lever arm
@@ -338,7 +338,8 @@ const horizontalEqMoment_val = horizontalEqMoment.map(item => parseFloat(item));
 // horizontal eq forces
     wt_val.forEach(item => {
         const horizontalEqForceList = document.createElement("li");
-        horizontalEqForceList.textContent = -0.1 * (item).toFixed(2);
+        item *= -0.1
+        horizontalEqForceList.textContent = item.toFixed(2);
         horizontalEqForce_listContainer.appendChild(horizontalEqForceList);
     });
 //  horizontal eq lever arm
@@ -406,7 +407,7 @@ const tau_toe = (maxVerticalStress_toe-(10 * tail_water_depth))*0.7;
 const tau_heel = -(minVerticalStress_heel-((cM * (upper_side_width+lower_side_width))+(upper_side_width+lower_side_width)*10))*0.1;
 
 // FOS against overturning
-const sigmaFosOverturning = (arrSum(wtMoment)+arrSum(waterWtMoment_val))/(arrSum(upliftMoment_val)+(upwardMoment_val)+arrSum(hydroStaticMoment_val)+me_val+arrSum(horizontalEqMoment_val));
+const sigmaFosOverturning = -(arrSum(wtMoment)+arrSum(waterWtMoment_val))/(arrSum(upliftMoment_val)+(upwardMoment_val)+arrSum(hydroStaticMoment_val)+me_val+arrSum(horizontalEqMoment_val));
 
 // FOS against sliding
 const sigmaFosSliding = Math.abs(0.7* summationVerticalForces/summationHorizontalForces);
@@ -545,9 +546,9 @@ const safetyValues = document.getElementById('safety-check-functions');
     //for shear friction factor
     const fosSsf = document.getElementById('shear-friction-factor');
     const fosSsf_val = document.createElement('div');
-    fosSsf_val.classList.add('slide');
+    fosSsf_val.classList.add('ssf');
     const fosSsfStatement = document.createElement('div');
-    fosSsfStatement.classList.add('slideStatement')
+    fosSsfStatement.classList.add('ssfStatement')
     fosSsf_val.textContent = '(\xB5 * \u2211V + B*q) ÷ \u2211H = ' + sigmaShearFrictionFactor.toFixed(2);
     fosSsf.appendChild(fosSsf_val);
     fosSsf.style.display='block'
