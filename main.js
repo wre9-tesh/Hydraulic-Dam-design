@@ -459,10 +459,10 @@ const safetyValues = document.getElementById('safety-check-functions');
     maxVert.classList.add('max-vertical-stress')
 
     if (maxVerticalStress_toe.toFixed(2) <= 3000){
-        maxVert.textContent = ' Vertical Stress (at toe) = ' + maxVerticalStress_toe.toFixed(2)+' Hence safe ' ;
+        maxVert.textContent = ' Vertical Stress (at toe) = ' + maxVerticalStress_toe.toFixed(2) ;
     }
     else{
-        maxVert.textContent = ' Vertical Stress (at toe) = ' + maxVerticalStress_toe.toFixed(2)+' Hence unsafe ' ;
+        maxVert.textContent = ' Vertical Stress (at toe) = ' + maxVerticalStress_toe.toFixed(2) ;
     }
 
     safetyValues.appendChild(maxVert);
@@ -474,10 +474,10 @@ const safetyValues = document.getElementById('safety-check-functions');
         }
 
     if (minVerticalStress_heel.toFixed(2) <= 3000){
-        minVert.textContent = ' Vertical Stress (at heel) = ' + minVerticalStress_heel.toFixed(2)+' Hence safe ' ;
+        minVert.textContent = ' Vertical Stress (at heel) = ' + minVerticalStress_heel.toFixed(2) ;
     }
     else{
-        minVert.textContent = ' Vertical Stress (at heel) = ' + minVerticalStress_heel.toFixed(2)+' Hence unsafe ' ;
+        minVert.textContent = ' Vertical Stress (at heel) = ' + minVerticalStress_heel.toFixed(2) ;
     }
 
 //     principal stresses
@@ -487,10 +487,10 @@ const safetyValues = document.getElementById('safety-check-functions');
     safetyValues.appendChild(principalStressToe);
 
     if (sigma.toFixed(2) <= 3000){
-        principalStressToe.textContent = ' principal Stress at Toe = ' + sigma .toFixed(2)+' Hence safe ' ;
+        principalStressToe.textContent = ' principal Stress at Toe = ' + sigma .toFixed(2) ;
     }
     else{
-        principalStressToe.textContent = ' principal Stress at Toe = ' + sigma.toFixed(2)+' Hence unsafe ' ;
+        principalStressToe.textContent = ' principal Stress at Toe = ' + sigma.toFixed(2) ;
     }
 
     const principalStressHeel = document.createElement('div');
@@ -499,10 +499,10 @@ const safetyValues = document.getElementById('safety-check-functions');
 
 
     if (sigmaN.toFixed(2) <= 420){
-        principalStressHeel.textContent = ' principal Stress at heel = ' + sigmaN .toFixed(2)+' Hence safe ' ;
+        principalStressHeel.textContent = ' principal Stress at heel = ' + sigmaN .toFixed(2) ;
     }
     else{
-        principalStressHeel.textContent = ' principal Stress at heel = ' + sigmaN.toFixed(2)+' Hence unsafe ' ;
+        principalStressHeel.textContent = ' principal Stress at heel = ' + sigmaN.toFixed(2) ;
     }
 // FOS checks
 // for overturning

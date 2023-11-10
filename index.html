@@ -7,28 +7,45 @@
     <link rel="stylesheet" href="inputs.css">
 </head>
 <body>
-<div class="header">Hydraulic Dam Design Using JavaScript</div>
+<div class="header">Hydraulic Dam Design Using JavaScripT</div>
 
 <div class="dimension">
-    Enter dimensions.
+    Enter dimensions:-
 </div>
 
 <form class="inputs" id="myForm">
+
+    <label for="top_width">t<sub class="labels">h</sub> </label>
     <input type="number" id="top_width"  step="0.01"  min="1" name="top_width" required>
+
+    <label for="bottom_width">b' </label>
     <input type="number" id="bottom_width"  step="0.01"  name="bottom_width" required>
+
+    <label for="reservoir_width">h<sub class="labels">3</sub> </label>
     <input type="number" id="reservoir_width"  step="0.01"  name="reservoir_width" required>
+
+    <label for="bottom_small_width">b<sub class="labels">1</sub> </label>
     <input type="number" id="bottom_small_width"  step="0.01"  min="1" name="bottom_small_width" required>
+
+    <label for="upper_side_width">h<sub class="labels">2</sub> </label>
     <input type="number" id="upper_side_width"   step="0.01" name="bottom_width" required>
+
+    <label for="lower_side_width">h<sub class="labels">1</sub> </label>
     <input type="number" id="lower_side_width"  step="0.01"  name="reservoir_width" required>
+
+    <label for="tail_water_width"> tail water height (t<sub class="labels">w</sub>)  </label>
     <input type="number" id="tail_water_width"   step="0.01" name="tail_water_width" required>
+
+    <label for="top_width">Slope (tan Θ) </label>
     <input type="number" id="slope" name="slope" step="0.01"  required>
+
     <input type="submit" id="submitButton" value="Submit">
 
 
 </form>
 
 <div class="sample_input">
-    <img src="./sample.png" alt="full reservoir case">
+    <img src="./final_pro_ultra_max.png" alt="full reservoir case">
     <input  id="button-64" type="button" value="Submit values">
 </div>
 

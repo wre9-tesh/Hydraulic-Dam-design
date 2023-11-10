@@ -1,8 +1,21 @@
+#myForm{
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: absolute;
+    gap: 1rem;
+    margin: 2rem;
+    padding-top: 2rem;
+
+}
+
+
 #top_width{
     border: none;
     box-shadow:
-            inset #009688 0 0 0 0.2rem,
-            inset #8ce9ff 0 0 0 1.2rem;
+            inset #3E432E 0 0 0 0.2rem,
+            inset #616F39 0 0 0 0.2rem,
+            inset #A7D129 0 0 0 1.2rem;
 
     color: black;
 
@@ -10,34 +23,32 @@
     height: 2rem;
     padding-left: 2rem;
 
-    position: relative;
-    top: 5.1rem;
-    left: 39rem;
+
 }
 
 
 #bottom_small_width{
     border: none;
     box-shadow:
-            inset #009688 0 0 0 0.2rem,
-            inset #8ce9ff 0 0 0 1.2rem;
+            inset #3E432E 0 0 0 0.2rem,
+            inset #616F39 0 0 0 0.2rem,
+            inset #A7D129 0 0 0 1.2rem;
 
     color: black;
 
-    width: 3rem;
+    width: 5rem;
     height: 2rem;
-    padding-left: 1rem;
+    padding-left: 2rem;
 
-    position: relative;
-    top: 36.7rem;
-    left: 22rem;
+
 }
 
 #bottom_width{
     border: none;
     box-shadow:
-            inset #009688 0 0 0 0.2rem,
-            inset #8ce9ff 0 0 0 1.2rem;
+            inset #3E432E 0 0 0 0.2rem,
+            inset #616F39 0 0 0 0.2rem,
+            inset #A7D129 0 0 0 1.2rem;
 
     color: black;
 
@@ -45,16 +56,15 @@
     height: 2rem;
     padding-left: 2rem;
 
-    position: relative;
-    left: 41rem;
-    top: 36.7rem;
+
 }
 
 #lower_side_width{
     border: none;
     box-shadow:
-            inset #009688 0 0 0 0.2rem,
-            inset #8ce9ff 0 0 0 1.2rem;
+            inset #3E432E 0 0 0 0.2rem,
+            inset #616F39 0 0 0 0.2rem,
+            inset #A7D129 0 0 0 1.2rem;
 
     color: black;
 
@@ -62,16 +72,15 @@
     height: 2rem;
     padding-left: 2rem;
 
-    position: relative;
-    top: 23.5rem;
-    left: 1rem;
+
 }
 
 #reservoir_width{
     border: none;
     box-shadow:
-            inset #009688 0 0 0 0.2rem,
-            inset #8ce9ff 0 0 0 1.2rem;
+            inset #3E432E 0 0 0 0.2rem,
+            inset #616F39 0 0 0 0.2rem,
+            inset #A7D129 0 0 0 1.2rem;
 
     color: black;
 
@@ -79,17 +88,16 @@
     height: 2rem;
     padding-left: 2rem;
 
-    position: relative;
-    top: 7rem;
-    left: 23rem;
+
 
 }
 
 #upper_side_width{
     border: none;
     box-shadow:
-            inset #009688 0 0 0 0.2rem,
-            inset #8ce9ff 0 0 0 1.2rem;
+            inset #3E432E 0 0 0 0.2rem,
+            inset #616F39 0 0 0 0.2rem,
+            inset #A7D129 0 0 0 1.2rem;
 
     color: black;
 
@@ -97,34 +105,15 @@
     height: 2rem;
     padding-left: 2rem;
 
-    position: relative;
-    top: 11.5rem;
-    left: 5.4rem;
 
 }
 
 #tail_water_width{
     border: none;
     box-shadow:
-            inset #009688 0 0 0 0.2rem,
-            inset #8ce9ff 0 0 0 1.2rem;
-
-    color: black;
-
-    width: 3rem;
-    height: 1rem;
-    padding-left: 1rem;
-
-    position: relative;
-    top: 31.3rem;
-    left: 29.5rem;
-}
-
-#slope{
-    border: none;
-    box-shadow:
-            inset #009688 0 0 0 0.2rem,
-            inset #8ce9ff 0 0 0 1.2rem;
+            inset #3E432E 0 0 0 0.2rem,
+            inset #616F39 0 0 0 0.2rem,
+            inset #A7D129 0 0 0 1.2rem;
 
     color: black;
 
@@ -132,8 +121,22 @@
     height: 2rem;
     padding-left: 2rem;
 
-    position: relative;
-    top: 20rem;
-    left: 18rem;
+
+}
+
+#slope{
+    border: none;
+    box-shadow:
+            inset #3E432E 0 0 0 0.2rem,
+            inset #616F39 0 0 0 0.2rem,
+            inset #A7D129 0 0 0 1.2rem;
+
+    color: black;
+
+    width: 5rem;
+    height: 2rem;
+    padding-left: 2rem;
+
+
 }
 
