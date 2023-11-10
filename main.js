@@ -382,8 +382,10 @@ const summationHorizontalForces = arrSum(horizontalEqForces_val) + pe_val(bottom
 
 let summationMoment = 0;
 
-summationMoment += (arrSum(wtMoment)+ arrSum(waterWt_val)+arrSum(upliftMoment_val) + upwardMoment_val +arrSum(hydroStaticMoment_val) + me_val
+summationMoment += (arrSum(wtMoment)+ arrSum(waterWtMoment_val)+arrSum(upliftMoment_val) + upwardMoment_val +arrSum(hydroStaticMoment_val) + me_val
 + arrSum(horizontalEqMoment_val) );
+
+console.log(arrSum(waterWtMoment_val))
 
 const bottomFullWidth = (bottom_width+bottom_small_width);
 
