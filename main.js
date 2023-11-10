@@ -438,6 +438,11 @@ const sigmaShearFrictionFactor = Math.abs(( 0.7* summationVerticalForces + botto
     horizontalSum.id = 'horizontal-sum';
     safetyChecks_div.appendChild(horizontalSum);
 
+    const momentSum = document.createElement('div');
+    momentSum.classList.add('sum');
+    momentSum.id = 'moment-sum';
+    safetyChecks_div.appendChild(momentSum);
+
     const eccentricity_val = document.createElement('div');
     eccentricity_val.classList.add('sum');
     eccentricity_val.id = 'eccentricity';
@@ -446,6 +451,8 @@ const sigmaShearFrictionFactor = Math.abs(( 0.7* summationVerticalForces + botto
     verticalSum.textContent = '\u2211 V = ' + summationVerticalForces.toFixed(2);
 
     horizontalSum.textContent =  '\u2211 H = ' + summationHorizontalForces.toFixed(2);
+
+    momentSum.textContent = '\u2211 M = ' + summationMoment.toFixed(2);
 
     eccentricity_val.textContent = 'e = ' + eccentricity.toFixed(2) ;
 
