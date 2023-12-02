@@ -468,7 +468,7 @@ const safetyValues = document.getElementById('safety-check-functions');
     maxVert.classList.add('max-vertical-stress')
 
     if (maxVerticalStress_toe.toFixed(2) <= 3000){
-        maxVert.textContent = ' Vertical Stress (at toe) = ' + maxVerticalStress_toe.toFixed(2) ;
+        maxVert.textContent = ' Vertical Stress (at toe) = ' + maxVerticalStress_toe.toFixed(2) + ' Hence , Safe' ;
     }
     else{
         maxVert.textContent = ' Vertical Stress (at toe) = ' + maxVerticalStress_toe.toFixed(2) ;
@@ -483,7 +483,7 @@ const safetyValues = document.getElementById('safety-check-functions');
         }
 
     if (minVerticalStress_heel.toFixed(2) <= 3000){
-        minVert.textContent = ' Vertical Stress (at heel) = ' + minVerticalStress_heel.toFixed(2) ;
+        minVert.textContent = ' Vertical Stress (at heel) = ' + minVerticalStress_heel.toFixed(2) + ' Hence , Safe' ;
     }
     else{
         minVert.textContent = ' Vertical Stress (at heel) = ' + minVerticalStress_heel.toFixed(2) ;
@@ -496,7 +496,7 @@ const safetyValues = document.getElementById('safety-check-functions');
     safetyValues.appendChild(principalStressToe);
 
     if (sigma.toFixed(2) <= 3000){
-        principalStressToe.textContent = ' principal Stress at Toe = ' + sigma .toFixed(2) ;
+        principalStressToe.textContent = ' principal Stress at Toe = ' + sigma .toFixed(2) + ' Hence , Safe' ;
     }
     else{
         principalStressToe.textContent = ' principal Stress at Toe = ' + sigma.toFixed(2) ;
@@ -508,7 +508,7 @@ const safetyValues = document.getElementById('safety-check-functions');
 
 
     if (sigmaN.toFixed(2) <= 420){
-        principalStressHeel.textContent = ' principal Stress at heel = ' + sigmaN .toFixed(2) ;
+        principalStressHeel.textContent = ' principal Stress at heel = ' + sigmaN .toFixed(2) + ' Hence , Safe' ;
     }
     else{
         principalStressHeel.textContent = ' principal Stress at heel = ' + sigmaN.toFixed(2) ;
