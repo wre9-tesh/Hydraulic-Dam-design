@@ -543,7 +543,7 @@ const safetyValues = document.getElementById('safety-check-functions');
     fosSlidingCheck.appendChild(fosSlide);
     fosSlidingCheck.style.display='block'
 
-    if (sigmaFosSliding.toFixed(2) <= 1.5){
+    if (sigmaFosSliding.toFixed(2) <= 1){
         fosSlidingStatement.textContent = ' Factor of safety against sliding = ' + sigmaFosSliding.toFixed(2)+' < 1 , Hence Unsafe ' ;
     }
     else{
@@ -562,7 +562,7 @@ const safetyValues = document.getElementById('safety-check-functions');
     fosSsf.appendChild(fosSsf_val);
     fosSsf.style.display='block'
 
-    if (sigmaFosSliding.toFixed(2) <= 1.5){
+    if (sigmaShearFrictionFactor.toFixed(2) <= 3){
         fosSsfStatement.textContent = 'As, Shear friction factor = ' + sigmaShearFrictionFactor.toFixed(2)+' < 3 , Hence Unsafe ' ;
     }
     else{
