@@ -12,12 +12,11 @@
 
 #top_width{
     border: none;
-    box-shadow:
-            inset #3E432E 0 0 0 0.2rem,
-            inset #616F39 0 0 0 0.2rem,
-            inset #A7D129 0 0 0 1.2rem;
-
-    color: black;
+    box-shadow: inset var(--primary-color)
+    0 0 0 0.2rem, inset var(--secondary-color)
+    0 0 0 0.2rem, inset var(--tertiary-color)
+    0 0 0 1.2rem;
+    color: var(--primary-color);
 
     width: 5rem;
     height: 2rem;
@@ -29,12 +28,11 @@
 
 #bottom_small_width{
     border: none;
-    box-shadow:
-            inset #3E432E 0 0 0 0.2rem,
-            inset #616F39 0 0 0 0.2rem,
-            inset #A7D129 0 0 0 1.2rem;
-
-    color: black;
+    box-shadow: inset var(--primary-color)
+    0 0 0 0.2rem, inset var(--secondary-color)
+    0 0 0 0.2rem, inset var(--tertiary-color)
+    0 0 0 1.2rem;
+    color: var(--primary-color);
 
     width: 5rem;
     height: 2rem;
@@ -45,12 +43,11 @@
 
 #bottom_width{
     border: none;
-    box-shadow:
-            inset #3E432E 0 0 0 0.2rem,
-            inset #616F39 0 0 0 0.2rem,
-            inset #A7D129 0 0 0 1.2rem;
-
-    color: black;
+    box-shadow: inset var(--primary-color)
+    0 0 0 0.2rem, inset var(--secondary-color)
+    0 0 0 0.2rem, inset var(--tertiary-color)
+    0 0 0 1.2rem;
+    color: var(--primary-color);
 
     width: 5rem;
     height: 2rem;
@@ -61,12 +58,11 @@
 
 #lower_side_width{
     border: none;
-    box-shadow:
-            inset #3E432E 0 0 0 0.2rem,
-            inset #616F39 0 0 0 0.2rem,
-            inset #A7D129 0 0 0 1.2rem;
-
-    color: black;
+    box-shadow: inset var(--primary-color)
+    0 0 0 0.2rem, inset var(--secondary-color)
+    0 0 0 0.2rem, inset var(--tertiary-color)
+    0 0 0 1.2rem;
+    color: var(--primary-color);
 
     width: 5rem;
     height: 2rem;
@@ -77,12 +73,11 @@
 
 #reservoir_width{
     border: none;
-    box-shadow:
-            inset #3E432E 0 0 0 0.2rem,
-            inset #616F39 0 0 0 0.2rem,
-            inset #A7D129 0 0 0 1.2rem;
-
-    color: black;
+    box-shadow: inset var(--primary-color)
+    0 0 0 0.2rem, inset var(--secondary-color)
+    0 0 0 0.2rem, inset var(--tertiary-color)
+    0 0 0 1.2rem;
+    color: var(--primary-color);
 
     width: 5rem;
     height: 2rem;
@@ -94,12 +89,11 @@
 
 #upper_side_width{
     border: none;
-    box-shadow:
-            inset #3E432E 0 0 0 0.2rem,
-            inset #616F39 0 0 0 0.2rem,
-            inset #A7D129 0 0 0 1.2rem;
-
-    color: black;
+    box-shadow: inset var(--primary-color)
+    0 0 0 0.2rem, inset var(--secondary-color)
+    0 0 0 0.2rem, inset var(--tertiary-color)
+    0 0 0 1.2rem;
+    color: var(--primary-color);
 
     width: 5rem;
     height: 2rem;
@@ -110,12 +104,11 @@
 
 #tail_water_width{
     border: none;
-    box-shadow:
-            inset #3E432E 0 0 0 0.2rem,
-            inset #616F39 0 0 0 0.2rem,
-            inset #A7D129 0 0 0 1.2rem;
-
-    color: black;
+    box-shadow: inset var(--primary-color)
+    0 0 0 0.2rem, inset var(--secondary-color)
+    0 0 0 0.2rem, inset var(--tertiary-color)
+    0 0 0 1.2rem;
+    color: var(--primary-color);
 
     width: 5rem;
     height: 2rem;
@@ -126,12 +119,11 @@
 
 #slope{
     border: none;
-    box-shadow:
-            inset #3E432E 0 0 0 0.2rem,
-            inset #616F39 0 0 0 0.2rem,
-            inset #A7D129 0 0 0 1.2rem;
-
-    color: black;
+    box-shadow: inset var(--primary-color)
+    0 0 0 0.2rem, inset var(--secondary-color)
+    0 0 0 0.2rem, inset var(--tertiary-color)
+    0 0 0 1.2rem;
+    color: var(--primary-color);
 
     width: 5rem;
     height: 2rem;

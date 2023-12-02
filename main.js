@@ -576,3 +576,9 @@ const safetyValues = document.getElementById('safety-check-functions');
     document.getElementById("submitButton").disabled = true;
 
 });
+
+// for changing colors in site
+
+// const root = document.documentElement;
+// root.style.setProperty( '--primary-color' , '#c817e0');
+
